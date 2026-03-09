@@ -13,7 +13,11 @@ export const locations: Record<string, LocationData> = {
     description:
       "Головна брама стародавнього Києва, пам'ятка оборонної архітектури Київської Русі. Це місце, з якого починалася велична історія міста, де зустрічали іноземних послів та поважних гостей.",
     fact: "Свою назву ворота отримали за аналогією із Золотими воротами в Константинополі, що підкреслювало статус Києва.",
-    images: ["/images/zoloti-1.jpg", "/images/zoloti-2.jpg"], // Додайте фото 4:3 у папку public/images/
+    images: [
+      "/images/zoloti-1.jpg",
+      "/images/zoloti-2.jpg",
+      "/images/zoloti-3.jpg",
+    ], // Додайте фото 4:3 у папку public/images/
   },
   tap2: {
     id: "tap2",
@@ -21,7 +25,11 @@ export const locations: Record<string, LocationData> = {
     description:
       "Найбільше та найглибше високогірне озеро України, розташоване в Карпатах. Оточене віковими ялинами, воно має неповторну атмосферу спокою та містичності.",
     fact: "З висоти пташиного польоту озеро нагадує око, через що отримало народну назву «Морське око Карпат».",
-    images: ["/images/synevyr.jpg"],
+    images: [
+      "/images/synevyr-1.jpg",
+      "/images/synevyr-2.jpg",
+      "/images/synevyr-3.jpg",
+    ],
   },
   // Додайте tap3 ... tap36
 };
