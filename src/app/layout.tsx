@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   description: "Цифрова листівка з цікавими локаціями та фактами про Україну.",
 };
 
+export const viewport: Viewport = {
+  themeColor: "#ECD6C7",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ECD6C7]`}
       >
         {children}
       </body>
