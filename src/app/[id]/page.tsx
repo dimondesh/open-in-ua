@@ -111,7 +111,7 @@ export default function LocationPage({
               <span className="h-[1px] w-12 sm:w-16 bg-[#A68A73]/40"></span>
             </div>
 
-            <p className="text-sm md:text-[15px] font-normal text-[#5A4A40]/80 leading-relaxed text-center w-full md:w-[90%]">
+            <p className="text-sm md:text-[15px] px-3 font-normal text-[#5A4A40]/80 leading-relaxed text-center w-full md:w-[90%]">
               {location.fact}
             </p>
           </div>
