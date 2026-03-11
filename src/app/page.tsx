@@ -2,18 +2,47 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { locations } from "@/data/locations";
 
 export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const lastLocation = localStorage.getItem("currentLocation");
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-    if (lastLocation) {
-      router.replace(`/${lastLocation}`);
-    } else {
-      router.replace("/tap1");
+    const handleNavigation = () => {
+      if (document.visibilityState === "visible") {
+        const lastLocation = localStorage.getItem("currentLocation");
+        let nextTap = "tap1";
+
+        // кожен новий скан -> нове місце
+        if (lastLocation && lastLocation.startsWith("tap")) {
+          const currentNum = parseInt(lastLocation.replace("tap", ""), 10);
+          const maxTaps = Object.keys(locations).length;
+
+          if (!isNaN(currentNum)) {
+            const nextNum = currentNum >= maxTaps ? 1 : currentNum + 1;
+            nextTap = "tap" + nextNum;
+          }
+        }
+
+        timeoutId = setTimeout(() => {
+          const url = "/" + nextTap + "?t=" + Date.now();
+          router.replace(url);
+        }, 1000);
+      }
+    };
+
+    if (document.visibilityState === "visible") {
+      handleNavigation();
     }
+
+    document.addEventListener("visibilitychange", handleNavigation);
+
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener("visibilitychange", handleNavigation);
+    };
   }, [router]);
 
   return (

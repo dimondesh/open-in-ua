@@ -65,7 +65,7 @@ export default function LocationPage({
                   <div className="relative w-full aspect-4/3 overflow-hidden shadow-sm md:rounded-2xl">
                     <Image
                       src={src}
-                      alt={`${location.title} - фото ${index + 1}`}
+                      alt={location.title + " - фото " + (index + 1)}
                       fill
                       priority={index === 0}
                       className="object-cover"
@@ -88,31 +88,30 @@ export default function LocationPage({
                       ? "w-5 bg-[#5A4A40]"
                       : "w-1.5 bg-[#D5CABB]"
                   }`}
-                  aria-label={`Перейти до фото ${index + 1}`}
+                  aria-label={"Перейти до фото " + (index + 1)}
                 />
               ))}
             </div>
           )}
         </section>
 
-        <section className="flex flex-col grow px-8 pt-8 pb-12 min-h-0 md:w-1/2 md:justify-center md:p-14 md:overflow-y-auto">
-          <h1 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 md:mb-8 text-center md:text-left text-[#3E2C20]">
+        <section className="flex flex-col grow px-5 pt-6 pb-12 md:w-1/2 md:justify-center md:p-14 overflow-y-auto">
+          <h1 className="text-3xl md:text-5xl font-medium tracking-tight mb-4 md:mb-8 text-center md:text-left text-[#3E2C20]">
             {location.title}
           </h1>
 
-          <p className="text-base md:text-lg text-[#5A4A40] leading-relaxed font-light grow md:grow-0 overflow-y-auto md:overflow-visible text-center md:text-left md:mb-8">
+          <p className="text-base md:text-lg text-[#5A4A40] leading-relaxed font-light text-center md:text-left mb-8 max-w-[55ch] mx-auto md:mx-0">
             {location.description}
           </p>
 
-          <div className="flex flex-col items-center mt-8 md:mt-auto shrink-0">
-            {/* Декоративный разделитель */}
+          <div className="flex flex-col items-center mt-auto shrink-0">
             <div className="flex items-center justify-center text-[#A68A73] mb-6 space-x-4 opacity-70 w-full">
               <span className="h-[1px] w-12 sm:w-16 bg-[#A68A73]/40"></span>
               <span className="text-xl">❦</span>
               <span className="h-[1px] w-12 sm:w-16 bg-[#A68A73]/40"></span>
             </div>
 
-            <p className="text-[15px] md:text-base font-normal text-[#5A4A40] leading-relaxed text-center italic w-full md:w-[90%]">
+            <p className="text-sm md:text-[15px] font-normal text-[#5A4A40]/80 leading-relaxed text-center w-full md:w-[90%]">
               {location.fact}
             </p>
           </div>
