@@ -9,13 +9,24 @@ export default function Home() {
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
+    let isNavigating = false;
 
     const handleNavigation = () => {
-      if (document.visibilityState === "visible") {
-        const lastLocation = localStorage.getItem("currentLocation");
+      if (document.visibilityState !== "visible" || isNavigating) return;
+
+      isNavigating = true;
+
+      timeoutId = setTimeout(() => {
+        let lastLocation = null;
+
+        try {
+          lastLocation = localStorage.getItem("currentLocation");
+        } catch (e) {
+          console.warn("localStorage заблоковано браузером (iOS Preview)");
+        }
+
         let nextTap = "tap1";
 
-        // кожен новий скан -> нове місце
         if (lastLocation && lastLocation.startsWith("tap")) {
           const currentNum = parseInt(lastLocation.replace("tap", ""), 10);
           const maxTaps = Object.keys(locations).length;
@@ -26,16 +37,12 @@ export default function Home() {
           }
         }
 
-        timeoutId = setTimeout(() => {
-          const url = "/" + nextTap + "?t=" + Date.now();
-          router.replace(url);
-        }, 1000);
-      }
+        const url = "/" + nextTap + "?t=" + Date.now();
+        router.replace(url);
+      }, 1000);
     };
 
-    if (document.visibilityState === "visible") {
-      handleNavigation();
-    }
+    handleNavigation();
 
     document.addEventListener("visibilitychange", handleNavigation);
 
